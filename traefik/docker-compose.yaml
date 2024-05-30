@@ -15,7 +15,7 @@ services:
       - "--entrypoints.websecure.http.tls=true"
       - "--entrypoints.websecure.http.tls.certResolver=myresolver"
       - "--entrypoints.websecure.http.tls.domains[0].main=data.${APPDOMAIN:-local}"
-      - "--entrypoints.websecure.http.tls.domains[0].sans=portainer.${APPDOMAIN:-local},alert.${APPDOMAIN:-local},traefik.${APPDOMAIN:-local}"
+      - "--entrypoints.websecure.http.tls.domains[0].sans=portainer.${APPDOMAIN:-local},alert.${APPDOMAIN:-local},traefik.${APPDOMAIN:-local},geoweb.${APPDOMAIN:-local}"
       - "--certificatesresolvers.myresolver.acme.httpchallenge=true"
       - "--certificatesresolvers.myresolver.acme.httpchallenge.entrypoint=web"
       - "--certificatesresolvers.myresolver.acme.email=hydrometuzsmartmet@gmail.com"
