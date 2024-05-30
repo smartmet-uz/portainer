@@ -1,0 +1,22 @@
+services:
+  smartmetserver:
+    image: fmidev/smartmetserver:latest
+    container_name: smartmetserver
+    labels:
+      - "traefik.http.routers.smartmetserver.entrypoints=websecure"
+      - "traefik.http.routers.smartmetserver.rule=Host(`data.${APPDOMAIN:-local}`)"
+      - "traefik.http.services.smartmetserver.loadbalancer.server.port=8080"
+    volumes:
+      - /smartmet/data/gfs/uzbekistan/surface/querydata:/smartmet/data/gfs/surface
+      - /smartmet/data/gfs/uzbekistan/pressure/querydata:/smartmet/data/gfs/pressure
+      - smartmetserver-storage-cnf:/etc/smartmet
+    networks:
+      - traefik-network
+    restart: unless-stopped
+
+volumes:
+  smartmetserver-storage-cnf:
+    
+networks:
+    traefik-network:
+      external: true
